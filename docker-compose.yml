@@ -1,0 +1,13 @@
+services:
+  ollama:
+    build: services/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    entrypoint: []
+    command: >
+      sh -c "ollama serve & sleep 5 && (ollama list | grep -q hermes3 || ollama pull hermes3) && wait"
+
+volumes:
+  ollama_data:
