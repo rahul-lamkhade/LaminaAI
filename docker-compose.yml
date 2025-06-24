@@ -1,4 +1,14 @@
 services:
+  memory-api:
+    build: ./services/memory-api
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - ./services/memory-api/chroma_data:/app/chroma_data
+    volumes:
+      - chroma_volume:/app/chroma_data
+    depends_on:
+      - ollama
   ollama:
     build: services/ollama
     ports:
@@ -11,3 +21,4 @@ services:
 
 volumes:
   ollama_data:
+  chroma_volume:
