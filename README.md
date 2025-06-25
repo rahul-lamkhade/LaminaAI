@@ -13,44 +13,35 @@
 * 🔍 **Context Recall** via vector search (RAG-style)
 * 💬 **Short-Term Memory Queue** (recent chat context)
 * ⚙️ Built with **Node.js**, **TypeScript**, **FastAPI, ChromaDB (Python)**, and **Ollama LLM**
-* 🔄 Easy to switch models via [Ollama](https://ollama.com/) (e.g. Hermes, Mistral, etc.)
+* 🔄 Easy to switch models via [Ollama](https://ollama.com/) (e.g. gemma3:1b, Hermes, Mistral, etc.)
 
 ---
 
 ## 🚀 Getting Started
 
-### 🖥 Requirements
+### 🐳 Requirements
 
-* Node.js ≥ 18
-* Python ≥ 3.10
-* [Ollama](https://ollama.com/) installed locally
+- [Docker](https://docs.docker.com/get-docker/)
+- [Docker Compose](https://docs.docker.com/compose/) (v2+)
 
 ---
 
-### 📦 Installation
+### 📦 Installation & Setup (Using Docker)
 
 ```bash
 # Clone the project
 git clone https://github.com/rahul-lamkhade/LaminaAI.git
 cd LaminaAI
 
-# Set up orchestrator app
-cd services/orchestrator
-npm install
+# Build all services
+docker-compose build
 
-# Set up Python memory service
-cd services/memory-api
-python3 -m venv venv
-source venv/bin/activate
-pip install -r requirements.txt
+# Start all services
+docker-compose up -d
 
-# Now start all services
-# in terminal
-ollama serve
-# in services/memory-api
-uvicorn src.vector_store:app --reload --reload-dir=src
-# in services/orchestrator
-npx ts-node src/index.ts
+# Run cli base chat
+docker-compose run --rm --service-ports orchestrator
+
 ```
 
 ---
@@ -60,11 +51,10 @@ npx ts-node src/index.ts
 * Recent messages are kept in a short-term memory queue (up to 10).
 * Older chats are summarized and stored in **ChromaDB** with metadata.
 * On each new message:
-
   * Fetch recent summaries + active short-term queue
   * Perform semantic search if trigger words match (e.g., *"remember"*)
 * Final prompt is sent to the LLM (via Ollama) for response generation.
-
+* type 'exit' and enter which will exit the chat. 
 ---
 
 ### 🔌 API Endpoints (Python Memory Server)
@@ -110,7 +100,6 @@ MIT — open-source and free to use for personal or commercial projects.
 
 ### 📲 Coming Soon
 
-* 🐳 Docker integration
 * 🧘 Emotional state tracking
 * 📱 Mobile UI (Ionic + Angular)
 * 🎧 Voice integration (TTS/STT)
