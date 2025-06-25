@@ -8,7 +8,7 @@ export async function sendToLamina(messages: ChatMessage[]): Promise<string> {
     messages,
     stream: false,
   });
-  console.log('Current Memory', messages);
+  //console.log('Current Memory', messages);
 
   const reply = response.data.message?.content?.trim();
   if (!reply) throw new Error('No response from model');

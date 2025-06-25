@@ -7,7 +7,7 @@ import { summarizeMessageStart } from './config/constant';
 import { getMemoryWithRAG } from './utils/rag';
 
 async function main() {
-  console.log("💬 Chat started with Lamina (Hermes 3)\n");
+  console.log("💬 Chat started with Lamina (Gemma 3)\n");
 
   // Setting old memories
   const oldMemories = await fetchRecentMemories(2);

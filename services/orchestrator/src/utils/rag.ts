@@ -8,7 +8,7 @@ export async function getMemoryWithRAG(userInput: string): Promise<ChatMessage[]
 
   if (shouldTriggerRAG(userInput)) {
     const results = await fetchDeepMemories(userInput); // Use semantic search API
-    console.log('RAG Results:', results);
+    //console.log('RAG Results:', results);
     ragMemories = results.map((summary: string) => ({
       role: 'assistant',
       content: `${ragMessageStart} ${summary}`
