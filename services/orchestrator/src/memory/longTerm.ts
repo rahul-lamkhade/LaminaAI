@@ -22,7 +22,7 @@ export async function saveSummaryToMemory(summary: string) {
 export async function fetchRecentMemories(n = 8): Promise<string[]> {
   try {
     const response = await axios.get(`http://memory-api:8000/memory/recent?n=${n}`);
-    console.log('responses', response.data);
+    //console.log('responses', response.data);
     return response.data.documents || [];
   } catch (error) {
     console.error("❌ Failed to fetch recent memories:", error);
