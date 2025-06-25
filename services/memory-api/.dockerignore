@@ -1,0 +1,11 @@
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+venv/
+.env
+*.log
+.vscode
+Dockerfile
+docker-compose.*
+chroma_data
