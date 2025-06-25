@@ -3,7 +3,6 @@
 
 # orchestrator
 services/orchestrator/node_modules/
-services/orchestrator/package-lock.json
 
 # memory-api
 services/memory-api/chroma_data/

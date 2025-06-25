@@ -12,7 +12,7 @@ export async function saveSummaryToMemory(summary: string) {
   };
 
   try {
-    await axios.post('http://localhost:8000/memory/add', memoryItem);
+    await axios.post('http://memory-api:8000/memory/add', memoryItem);
     console.log('✅ Summary saved to long-term memory.');
   } catch (error: any) {
     console.error('❌ Failed to save summary:', error.message);
@@ -21,7 +21,7 @@ export async function saveSummaryToMemory(summary: string) {
 
 export async function fetchRecentMemories(n = 8): Promise<string[]> {
   try {
-    const response = await axios.get(`http://localhost:8000/memory/recent?n=${n}`);
+    const response = await axios.get(`http://memory-api:8000/memory/recent?n=${n}`);
     console.log('responses', response.data);
     return response.data.documents || [];
   } catch (error) {
@@ -32,7 +32,7 @@ export async function fetchRecentMemories(n = 8): Promise<string[]> {
 
 export async function fetchDeepMemories(query: string): Promise<string[]> {
   try {
-    const res = await axios.post('http://localhost:8000/query', {
+    const res = await axios.post('http://memory-api:8000/query', {
       query,
       n_results: 2
     });

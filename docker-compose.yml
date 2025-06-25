@@ -1,0 +1,30 @@
+services:
+  memory-api:
+    build: ./services/memory-api
+    ports:
+      - "8000:8000"
+    # volumes:
+    #   - ./services/memory-api/chroma_data:/app/chroma_data
+    volumes:
+      - chroma_volume:/app/chroma_data
+    depends_on:
+      - ollama
+  ollama:
+    build: ./services/ollama
+    ports:
+      - "11434:11434"
+    volumes:
+      - ollama_data:/root/.ollama
+    entrypoint: []
+    command: >
+      sh -c "ollama serve & sleep 5 && (ollama list | grep -q gemma3:1b || ollama pull gemma3:1b) && wait"
+  orchestrator:
+    build: ./services/orchestrator
+    ports:
+      - "3000:3000"
+    depends_on:
+      - memory-api
+      - ollama
+volumes:
+  ollama_data:
+  chroma_volume:

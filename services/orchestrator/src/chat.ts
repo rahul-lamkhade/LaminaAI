@@ -1,13 +1,14 @@
 import axios from 'axios';
 import { ChatMessage } from './models/types';
+import { model } from './config/constant';
 
-export async function sendToLamina(messages: ChatMessage[], model = 'hermes3'): Promise<string> {
-  const response = await axios.post('http://localhost:11434/api/chat', {
+export async function sendToLamina(messages: ChatMessage[]): Promise<string> {
+  const response = await axios.post('http://ollama:11434/api/chat', {
     model,
     messages,
     stream: false,
   });
-  console.log('Current Memory', messages);
+  //console.log('Current Memory', messages);
 
   const reply = response.data.message?.content?.trim();
   if (!reply) throw new Error('No response from model');
@@ -28,8 +29,8 @@ export async function summarizeMessages(messages: ChatMessage[]): Promise<string
     }
   ];
 
-  const res = await axios.post('http://localhost:11434/api/chat', {
-    model: 'hermes3',
+  const res = await axios.post('http://ollama:11434/api/chat', {
+    model,
     messages: prompt,
     stream: false
   });
