@@ -92,7 +92,7 @@ This project is modular and designed to be extended or embedded in other tools. 
 
 ---
 
-### �� License
+### License
 
 MIT — open-source and free to use for personal or commercial projects.
 
