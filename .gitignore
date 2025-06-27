@@ -8,3 +8,6 @@ services/orchestrator/node_modules/
 services/memory-api/chroma_data/
 services/memory-api/venv/
 services/memory-api/src/__pycache__/
+
+# app - cli
+apps/cli/node_modules/

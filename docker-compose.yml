@@ -25,6 +25,18 @@ services:
     depends_on:
       - memory-api
       - ollama
+      - redis
+  redis:
+    image: redis:7
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+  cli-ui:
+    build: ./apps/cli
+    depends_on:
+      - orchestrator
 volumes:
   ollama_data:
   chroma_volume:
+  redis_data:
