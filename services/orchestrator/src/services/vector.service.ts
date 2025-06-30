@@ -24,9 +24,9 @@ export class VectorService {
 
     try {
       await axios.post(`${this.baseUrl}/memory/add`, memoryItem);
-      console.log('✅ Summary saved to long-term memory.');
+      console.log('Summary saved to long-term memory.');
     } catch (error: any) {
-      console.error('❌ Failed to save summary:', error.message);
+      console.error('Failed to save summary:', error.message);
     }
   }
 
@@ -35,7 +35,7 @@ export class VectorService {
       const response = await axios.get(`${this.baseUrl}/memory/recent?n=${n}`);
       return response.data.documents || [];
     } catch (error) {
-      console.error("❌ Failed to fetch recent memories:", error);
+      console.error("Failed to fetch recent memories:", error);
       return [];
     }
   }
@@ -48,7 +48,7 @@ export class VectorService {
       });
       return res.data.documents?.[0] || [];
     } catch (err) {
-      console.error('❌ Failed to fetch RAG memories:', err);
+      console.error('Failed to fetch RAG memories:', err);
       return [];
     }
   }

@@ -40,7 +40,7 @@ docker-compose build
 docker-compose up -d
 
 # Run cli base chat
-docker-compose run --rm --service-ports orchestrator
+docker-compose run --rm --service-ports cli-ui
 
 ```
 
