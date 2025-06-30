@@ -1,8 +1,9 @@
-import { startChatLoop } from './workflows/chat.workflow';
+import express from 'express';
+import routes from './routes';
 
-async function main() {
-  console.log("💬 Chat started with Lamina (Gemma 3)\n");
-  await startChatLoop();
-}
+const app = express();
+app.use(express.json());
+app.use('/api', routes);
 
-main();
+const PORT = process.env.PORT || 3000;
+app.listen(PORT, () => console.log(`🚀 Backend listening on port ${PORT}`));
