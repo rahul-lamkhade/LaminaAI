@@ -12,7 +12,7 @@ export async function generateChatResponse(req: Request, res: Response) {
   const { input } = req.body;
   try {
     const currentState = await memoryService.loadFromRedis();
-    console.log('currentState', currentState);
+    
     if(currentState.length == 0) {
       const summaries = await vectorService.fetchRecentSummaries(2);
       memoryService.setMemoryFromSummaries(summaries);

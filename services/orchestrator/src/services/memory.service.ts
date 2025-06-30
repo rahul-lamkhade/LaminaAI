@@ -46,7 +46,7 @@ export class MemoryService {
     const nonSystemMessages = this.memoryStack.filter(m => m.role !== 'system');
 
     if (nonSystemMessages.length >= MAX_MEMORY) {
-      const oldest = this.memoryStack[1]; // assume index 0 is system
+      const oldest = this.memoryStack[0];
       if (
         !oldest.content.startsWith(summarizeMessageStart) &&
         !oldest.content.startsWith(ragMessageStart)
@@ -54,7 +54,7 @@ export class MemoryService {
         this.archiveBuffer.push(oldest);
       }
 
-      this.memoryStack.splice(1, 1); // remove oldest
+      this.memoryStack.splice(0, 1); // remove oldest
     }
 
     this.memoryStack.push(message);
